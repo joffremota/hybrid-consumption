@@ -136,7 +136,6 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
             step="0.1"
             value={form.distanceKm}
             onChange={(event) => updateField('distanceKm', event.target.value)}
-            placeholder="374"
           />
         </label>
 
@@ -148,7 +147,6 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
             step="0.1"
             value={form.electricKwhPer100Km}
             onChange={(event) => updateField('electricKwhPer100Km', event.target.value)}
-            placeholder="1.9"
           />
         </label>
 
@@ -160,7 +158,6 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
             step="0.1"
             value={form.fuelLitersPer100Km}
             onChange={(event) => updateField('fuelLitersPer100Km', event.target.value)}
-            placeholder="5.0"
           />
         </label>
 
@@ -175,12 +172,7 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
 
         <label className="full-width">
           Observacoes
-          <textarea
-            rows={3}
-            value={form.notes}
-            onChange={(event) => updateField('notes', event.target.value)}
-            placeholder="Ex.: AEC cumulativo do app da BYD"
-          />
+          <textarea rows={3} value={form.notes} onChange={(event) => updateField('notes', event.target.value)} />
         </label>
 
         {error ? <p className="form-error">{error}</p> : null}

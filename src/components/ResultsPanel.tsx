@@ -52,6 +52,10 @@ export function ResultsPanel({ selectedEntry, settings }: ResultsPanelProps) {
           <strong>{formatNumber(metrics.fuelLitersPerKm, 3)}</strong>
         </article>
         <article className="metric-card">
+          <span>km/L</span>
+          <strong>{metrics.kmPerLiter === null ? 'Sem uso de combustivel' : formatNumber(metrics.kmPerLiter, 2)}</strong>
+        </article>
+        <article className="metric-card">
           <span>Energia equivalente total</span>
           <strong>{formatNumber(metrics.totalEquivalentKwh)} kWh-eq</strong>
         </article>

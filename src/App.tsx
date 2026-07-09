@@ -11,6 +11,8 @@ function sortEntries(entries: ConsumptionEntry[]): ConsumptionEntry[] {
 }
 
 export default function App() {
+  const readmeUrl = 'https://github.com/joffremota/hybrid-consumption#readme';
+
   const [entries, setEntries] = useState<ConsumptionEntry[]>(() => sortEntries(loadHistory()));
   const [settings, setSettings] = useState<AppSettings>(() => loadSettings());
   const [selectedEntryId, setSelectedEntryId] = useState<string | null>(entries[0]?.id ?? null);
@@ -62,6 +64,11 @@ export default function App() {
             Compare quanto do seu uso veio de eletricidade e quanto veio de combustivel com base nas leituras
             por 100 km.
           </p>
+          <div className="hero-actions">
+            <a className="primary-link" href={readmeUrl} target="_blank" rel="noreferrer">
+              Ver README e instrucoes
+            </a>
+          </div>
         </div>
         <div className="hero-highlight">
           <span>Exemplo real</span>

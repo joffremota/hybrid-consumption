@@ -1,22 +1,110 @@
 # Hybrid Consumption
 
-Aplicativo open source para calcular e comparar consumo de carros hibridos plug-in, com foco inicial no fluxo de leitura do app da BYD.
+Hybrid Consumption e um utilitario open source para estimar e comparar o consumo
+de carros hibridos plug-in usando as medias mostradas pelo carro ou pelo app da
+montadora.
 
-## Funcionalidades
+O caso de uso inicial deste projeto e o BYD King, mas a interface foi montada
+para funcionar tambem com leituras genericas de PHEV.
 
-- Calculo de `kWh totais` e `litros totais` a partir de medias por 100 km.
-- Comparativo de participacao eletrica vs combustivel por equivalencia energetica.
-- Historico local salvo no navegador.
-- Perfil inicial preparado para leituras do BYD King.
+## Acesso rapido
 
-## Desenvolvimento
+- App publicado no GitHub Pages:
+  `https://joffremota.github.io/hybrid-consumption/`
+- Repositorio:
+  `https://github.com/joffremota/hybrid-consumption`
+
+## Objetivo
+
+O objetivo do projeto e responder, de forma simples, perguntas como:
+
+- quantos kWh foram consumidos no periodo
+- quantos litros foram consumidos no periodo
+- qual foi a participacao relativa de eletricidade e combustivel
+- como comparar uma leitura acumulada com uma leitura de trecho
+
+Isso e util quando o app da montadora mostra somente indicadores em
+`kWh/100 km` e `L/100 km`, mas nao deixa claro o total consumido nem a
+participacao energetica de cada fonte.
+
+## Como a ferramenta funciona
+
+Voce informa:
+
+- distancia do periodo em km
+- consumo eletrico em `kWh/100 km`
+- consumo de combustivel em `L/100 km`
+- tipo da leitura: acumulada ou trecho
+- observacoes opcionais
+
+A ferramenta calcula:
+
+- `kWh totais = km * (kWh/100 km) / 100`
+- `litros totais = km * (L/100 km) / 100`
+- `kWh/km`
+- `L/km`
+- energia equivalente total
+- participacao eletrica vs combustivel
+
+Por padrao, o comparativo usa equivalencia energetica de `8.9 kWh/L`, mas esse
+valor pode ser alterado nas configuracoes.
+
+## Uso com BYD King
+
+Para o BYD King, a ideia e copiar manualmente os numeros que aparecem no app,
+por exemplo:
+
+- `AEC cumulativo`
+- `Energia ult. 50 km`
+
+Se o app mostrar algo como:
+
+- distancia: `374 km`
+- eletrico: `1.9 kWh/100 km`
+- combustivel: `5.0 L/100 km`
+
+a ferramenta converte isso em totais estimados e mostra a divisao energetica do
+periodo.
+
+## Funcionalidades atuais
+
+- calculo de `kWh totais` e `litros totais`
+- comparativo de participacao eletrica vs combustivel
+- historico local salvo no navegador com `localStorage`
+- edicao e exclusao de medicoes
+- perfil inicial preparado para BYD King
+- publicacao automatica no GitHub Pages
+
+## Como usar no navegador
+
+1. Acesse `https://joffremota.github.io/hybrid-consumption/`
+2. Escolha o perfil do veiculo
+3. Informe distancia, media eletrica e media de combustivel
+4. Clique em `Calcular e salvar`
+5. Veja os totais e o comparativo no painel de resultados
+6. Consulte ou edite o historico salvo localmente no navegador
+
+## Desenvolvimento local
+
+### Requisitos
+
+- Node.js 20+
+- npm 10+
+
+### Rodar em modo de desenvolvimento
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Testes
+### Gerar build de producao
+
+```bash
+npm run build
+```
+
+### Executar testes
 
 ```bash
 npm run test
@@ -24,20 +112,16 @@ npm run test
 
 ## Publicacao
 
-O repositório inclui workflow para publicar no GitHub Pages. Ao criar o repo, habilite Pages com origem em GitHub Actions.
+O projeto inclui workflow em `.github/workflows/deploy.yml` para publicar no
+GitHub Pages via GitHub Actions.
 
-## Subir para o GitHub
+Configuracao esperada no GitHub:
 
-```bash
-git init -b main
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/SEU_USUARIO/hybrid-consumption.git
-git push -u origin main
-```
+- `Settings > Pages`
+- `Source: GitHub Actions`
 
-Depois do primeiro push:
+Cada push na branch `main` deve gerar um novo deploy.
 
-- crie o repositorio `hybrid-consumption` no GitHub
-- confirme em `Settings > Pages` que a origem esta em `GitHub Actions`
-- o workflow `.github/workflows/deploy.yml` publica automaticamente a cada push na branch `main`
+## Licenca
+
+Este projeto esta licenciado sob a MIT License. Veja [LICENSE](./LICENSE).

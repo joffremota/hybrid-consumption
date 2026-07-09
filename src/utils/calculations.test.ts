@@ -14,6 +14,7 @@ describe('calculateMetrics', () => {
 
     expect(result.totalElectricKwh).toBe(10);
     expect(result.totalFuelLiters).toBe(5);
+    expect(result.kmPerLiter).toBe(20);
     expect(result.totalEquivalentKwh).toBe(54.5);
     expect(result.electricShare).toBeCloseTo(10 / 54.5);
   });
@@ -30,6 +31,7 @@ describe('calculateMetrics', () => {
 
     expect(result.totalElectricKwh).toBeCloseTo(7.106, 3);
     expect(result.totalFuelLiters).toBeCloseTo(18.7, 3);
+    expect(result.kmPerLiter).toBeCloseTo(20, 2);
     expect(result.fuelShare).toBeGreaterThan(result.electricShare);
   });
 
@@ -45,5 +47,6 @@ describe('calculateMetrics', () => {
 
     expect(result.electricShare).toBe(0);
     expect(result.fuelShare).toBe(0);
+    expect(result.kmPerLiter).toBeNull();
   });
 });

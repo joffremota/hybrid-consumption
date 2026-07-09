@@ -16,6 +16,7 @@ export function calculateMetrics(
     totalFuelLiters,
     electricKwhPerKm: entry.electricKwhPer100Km / 100,
     fuelLitersPerKm: entry.fuelLitersPer100Km / 100,
+    kmPerLiter: totalFuelLiters === 0 ? null : entry.distanceKm / totalFuelLiters,
     totalEquivalentKwh,
     electricShare: totalEquivalentKwh === 0 ? 0 : totalElectricKwh / totalEquivalentKwh,
     fuelShare: totalEquivalentKwh === 0 ? 0 : equivalentFuelKwh / totalEquivalentKwh

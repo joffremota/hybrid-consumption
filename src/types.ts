@@ -22,6 +22,7 @@ export interface CalculatedMetrics {
   totalFuelLiters: number;
   electricKwhPerKm: number;
   fuelLitersPerKm: number;
+  kmPerLiter: number | null;
   totalEquivalentKwh: number;
   electricShare: number;
   fuelShare: number;
