@@ -49,6 +49,30 @@ A ferramenta calcula:
 Por padrao, o comparativo usa equivalencia energetica de `8.9 kWh/L`, mas esse
 valor pode ser alterado nas configuracoes.
 
+## De onde vem o `8.9 kWh/L`
+
+O valor padrao foi definido como referencia energetica baseada no padrao
+`EPA / MPGe` usado nos EUA para comparar eletricidade e gasolina.
+
+A conta e:
+
+- `33.7 kWh` por `1 galao americano` de gasolina
+- `1 galao americano = 3.785 L`
+- `33.7 / 3.785 = 8.9 kWh/L` aproximadamente
+
+No app, esse numero e usado apenas para colocar eletricidade e combustivel em
+uma base energetica comum.
+
+Importante:
+
+- isso nao representa custo equivalente
+- isso nao representa rendimento equivalente do motor
+- isso nao e uma medicao especifica do BYD King
+- para gasolina brasileira, o valor por litro pode variar conforme a composicao
+  do combustivel e o criterio adotado
+
+Por isso o campo continua editavel e o app permite ajuste manual.
+
 ## Uso com BYD King
 
 Para o BYD King, a ideia e copiar manualmente os numeros que aparecem no app,
