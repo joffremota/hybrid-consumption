@@ -17,24 +17,6 @@ export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
       </div>
 
       <label>
-        Referencia
-        <select
-          value={settings.energyEquivalentKwhPerLiter === DEFAULT_EQUIVALENT_KWH_PER_LITER ? 'epa' : 'manual'}
-          onChange={(event) => {
-            if (event.target.value === 'epa') {
-              onChange({
-                ...settings,
-                energyEquivalentKwhPerLiter: DEFAULT_EQUIVALENT_KWH_PER_LITER
-              });
-            }
-          }}
-        >
-          <option value="epa">EPA / MPGe (8.9 kWh/L)</option>
-          <option value="manual">Manual personalizado</option>
-        </select>
-      </label>
-
-      <label>
         kWh equivalentes por litro de combustivel
         <input
           type="number"
@@ -49,6 +31,21 @@ export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
           }
         />
       </label>
+
+      <div className="form-actions">
+        <button
+          type="button"
+          className="ghost-button"
+          onClick={() =>
+            onChange({
+              ...settings,
+              energyEquivalentKwhPerLiter: DEFAULT_EQUIVALENT_KWH_PER_LITER
+            })
+          }
+        >
+          Restaurar default EPA / MPGe (8.9 kWh/L)
+        </button>
+      </div>
 
       <p className="helper-text">
         O valor padrao de 8.9 kWh/L vem da convencao EPA/MPGe: 33.7 kWh por galao

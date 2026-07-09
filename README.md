@@ -47,7 +47,8 @@ A ferramenta calcula:
 - participacao eletrica vs combustivel
 
 Por padrao, o comparativo usa equivalencia energetica de `8.9 kWh/L`, mas esse
-valor pode ser alterado nas configuracoes.
+valor pode ser alterado manualmente nas configuracoes. O painel tambem oferece
+um botao para restaurar o default `EPA / MPGe`.
 
 ## De onde vem o `8.9 kWh/L`
 
@@ -71,7 +72,8 @@ Importante:
 - para gasolina brasileira, o valor por litro pode variar conforme a composicao
   do combustivel e o criterio adotado
 
-Por isso o campo continua editavel e o app permite ajuste manual.
+Por isso o campo continua editavel e o app permite ajuste manual, com um atalho
+para restaurar `8.9 kWh/L`.
 
 ## Uso com BYD King
 
