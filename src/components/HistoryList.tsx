@@ -31,6 +31,10 @@ export function HistoryList({
         <div className="history-list">
           {entries.map((entry) => {
             const metrics = calculateMetrics(entry, energyEquivalentKwhPerLiter);
+            const electricSummary =
+              metrics.electricRecoveredKwh > 0
+                ? `${formatNumber(metrics.electricRecoveredKwh)} kWh recuperados`
+                : `${formatNumber(metrics.electricShare * 100)}% eletrico`;
 
             return (
               <article key={entry.id} className="history-item">
@@ -42,8 +46,7 @@ export function HistoryList({
                   <div>
                     <strong>{formatNumber(entry.distanceKm)} km</strong>
                     <span>
-                      {formatNumber(metrics.electricShare * 100)}% eletrico / {formatNumber(metrics.fuelShare * 100)}%
-                      combustivel
+                      {electricSummary} / {formatNumber(metrics.fuelShare * 100)}% combustivel
                     </span>
                   </div>
                 </button>

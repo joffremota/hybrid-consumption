@@ -13,6 +13,8 @@ describe('calculateMetrics', () => {
     );
 
     expect(result.totalElectricKwh).toBe(10);
+    expect(result.electricConsumedKwh).toBe(10);
+    expect(result.electricRecoveredKwh).toBe(0);
     expect(result.totalFuelLiters).toBe(5);
     expect(result.kmPerLiter).toBe(20);
     expect(result.totalEquivalentKwh).toBe(54.5);
@@ -33,6 +35,24 @@ describe('calculateMetrics', () => {
     expect(result.totalFuelLiters).toBeCloseTo(18.7, 3);
     expect(result.kmPerLiter).toBeCloseTo(20, 2);
     expect(result.fuelShare).toBeGreaterThan(result.electricShare);
+  });
+
+  it('keeps negative electric readings as recovered energy without negative shares', () => {
+    const result = calculateMetrics(
+      {
+        distanceKm: 50,
+        electricKwhPer100Km: -0.4,
+        fuelLitersPer100Km: 5
+      },
+      8.9
+    );
+
+    expect(result.totalElectricKwh).toBeCloseTo(-0.2, 3);
+    expect(result.electricConsumedKwh).toBe(0);
+    expect(result.electricRecoveredKwh).toBeCloseTo(0.2, 3);
+    expect(result.totalEquivalentKwh).toBe(22.25);
+    expect(result.electricShare).toBe(0);
+    expect(result.fuelShare).toBe(1);
   });
 
   it('returns zero shares when both sources are zero', () => {

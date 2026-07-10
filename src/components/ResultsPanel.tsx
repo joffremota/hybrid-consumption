@@ -17,6 +17,7 @@ export function ResultsPanel({ selectedEntry, settings }: ResultsPanelProps) {
   }
 
   const metrics = calculateMetrics(selectedEntry, settings.energyEquivalentKwhPerLiter);
+  const hasElectricRecovery = metrics.electricRecoveredKwh > 0;
 
   return (
     <section className="panel panel-results">
@@ -30,9 +31,13 @@ export function ResultsPanel({ selectedEntry, settings }: ResultsPanelProps) {
 
       <div className="share-grid">
         <article className="share-card electric">
-          <span>Eletricidade</span>
+          <span>{hasElectricRecovery ? 'Saldo eletrico' : 'Eletricidade'}</span>
           <strong>{formatNumber(metrics.electricShare * 100)}%</strong>
-          <small>{formatNumber(metrics.totalElectricKwh)} kWh totais</small>
+          <small>
+            {hasElectricRecovery
+              ? `${formatNumber(metrics.electricRecoveredKwh)} kWh recuperados`
+              : `${formatNumber(metrics.electricConsumedKwh)} kWh totais`}
+          </small>
         </article>
 
         <article className="share-card fuel">
@@ -44,7 +49,7 @@ export function ResultsPanel({ selectedEntry, settings }: ResultsPanelProps) {
 
       <div className="metrics-grid">
         <article className="metric-card">
-          <span>kWh/km</span>
+          <span>{hasElectricRecovery ? 'Saldo kWh/km' : 'kWh/km'}</span>
           <strong>{formatNumber(metrics.electricKwhPerKm, 3)}</strong>
         </article>
         <article className="metric-card">

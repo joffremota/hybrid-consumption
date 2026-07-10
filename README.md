@@ -32,7 +32,7 @@ participacao energetica de cada fonte.
 Voce informa:
 
 - distancia do periodo em km
-- consumo eletrico em `kWh/100 km`
+- consumo eletrico ou saldo eletrico em `kWh/100 km`
 - consumo de combustivel em `L/100 km`
 - tipo da leitura: acumulada ou trecho
 - observacoes opcionais
@@ -45,6 +45,11 @@ A ferramenta calcula:
 - `L/km`
 - energia equivalente total
 - participacao eletrica vs combustivel
+
+Em leituras de trecho, o campo de energia pode ser negativo quando o app do
+carro indicar saldo eletrico recuperado no periodo. Nesse caso, a ferramenta
+mantem o valor eletrico assinado, mas nao usa esse saldo como participacao
+negativa de consumo.
 
 Por padrao, o comparativo usa equivalencia energetica de `8.9 kWh/L`, mas esse
 valor pode ser alterado manualmente nas configuracoes. O painel tambem oferece

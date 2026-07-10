@@ -64,8 +64,8 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
       return;
     }
 
-    if (electricKwhPer100Km < 0 || Number.isNaN(electricKwhPer100Km)) {
-      setError('Consumo eletrico invalido.');
+    if (Number.isNaN(electricKwhPer100Km)) {
+      setError('Energia eletrica invalida.');
       return;
     }
 
@@ -140,10 +140,9 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
         </label>
 
         <label>
-          Energia (kWh/100 km)
+          Energia / saldo eletrico (kWh/100 km)
           <input
             type="number"
-            min="0"
             step="0.1"
             value={form.electricKwhPer100Km}
             onChange={(event) => updateField('electricKwhPer100Km', event.target.value)}
@@ -186,6 +185,7 @@ export function EntryForm({ initialEntry, onSubmit, onCancelEdit }: EntryFormPro
 
       <p className="helper-text">
         Para BYD King, use os dados do app como aparecem em "AEC cumulativo" ou "Energia ult. 50 km".
+        Valores negativos indicam saldo eletrico recuperado no periodo.
       </p>
     </section>
   );

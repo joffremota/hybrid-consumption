@@ -7,18 +7,22 @@ export function calculateMetrics(
   energyEquivalentKwhPerLiter: number
 ): CalculatedMetrics {
   const totalElectricKwh = (entry.distanceKm * entry.electricKwhPer100Km) / 100;
+  const electricConsumedKwh = Math.max(totalElectricKwh, 0);
+  const electricRecoveredKwh = Math.max(totalElectricKwh * -1, 0);
   const totalFuelLiters = (entry.distanceKm * entry.fuelLitersPer100Km) / 100;
   const equivalentFuelKwh = totalFuelLiters * energyEquivalentKwhPerLiter;
-  const totalEquivalentKwh = totalElectricKwh + equivalentFuelKwh;
+  const totalEquivalentKwh = electricConsumedKwh + equivalentFuelKwh;
 
   return {
     totalElectricKwh,
+    electricConsumedKwh,
+    electricRecoveredKwh,
     totalFuelLiters,
     electricKwhPerKm: entry.electricKwhPer100Km / 100,
     fuelLitersPerKm: entry.fuelLitersPer100Km / 100,
     kmPerLiter: totalFuelLiters === 0 ? null : entry.distanceKm / totalFuelLiters,
     totalEquivalentKwh,
-    electricShare: totalEquivalentKwh === 0 ? 0 : totalElectricKwh / totalEquivalentKwh,
+    electricShare: totalEquivalentKwh === 0 ? 0 : electricConsumedKwh / totalEquivalentKwh,
     fuelShare: totalEquivalentKwh === 0 ? 0 : equivalentFuelKwh / totalEquivalentKwh
   };
 }

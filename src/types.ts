@@ -19,6 +19,8 @@ export interface AppSettings {
 
 export interface CalculatedMetrics {
   totalElectricKwh: number;
+  electricConsumedKwh: number;
+  electricRecoveredKwh: number;
   totalFuelLiters: number;
   electricKwhPerKm: number;
   fuelLitersPerKm: number;
