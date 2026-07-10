@@ -35,6 +35,8 @@ export function HistoryList({
               metrics.electricRecoveredKwh > 0
                 ? `${formatNumber(metrics.electricRecoveredKwh)} kWh recuperados`
                 : `${formatNumber(metrics.electricShare * 100)}% eletrico`;
+            const fuelEconomySummary =
+              metrics.kmPerLiter === null ? 'Sem uso de combustivel' : `${formatNumber(metrics.kmPerLiter, 2)} km/L`;
 
             return (
               <article key={entry.id} className="history-item">
@@ -45,6 +47,7 @@ export function HistoryList({
                   </div>
                   <div>
                     <strong>{formatNumber(entry.distanceKm)} km</strong>
+                    <span>{fuelEconomySummary}</span>
                     <span>
                       {electricSummary} / {formatNumber(metrics.fuelShare * 100)}% combustivel
                     </span>
